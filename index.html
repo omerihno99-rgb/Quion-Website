@@ -1612,10 +1612,10 @@
 
     <div class="pricing-grid">
       <!-- Basic -->
-      <div class="price-card" data-plan="basic" data-plan-name="Basic" data-base-price="400">
+      <div class="price-card" data-plan="basic" data-plan-name="Basic" data-base-price="300">
         <div class="price-card-name">Basic</div>
         <div class="price-card-desc">For founders launching their first site.</div>
-        <span class="price-card-amount">£400</span>
+        <span class="price-card-amount">£300</span>
         <span class="price-card-duration">one-time</span>
         <ul class="price-card-features">
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Landing page</li>
@@ -1626,11 +1626,11 @@
       </div>
 
       <!-- Pro (featured) -->
-      <div class="price-card price-card-featured" data-plan="pro" data-plan-name="Pro" data-base-price="400">
+      <div class="price-card price-card-featured" data-plan="pro" data-plan-name="Pro" data-base-price="300">
         <div class="price-card-badge">Most popular</div>
         <div class="price-card-name">Pro</div>
         <div class="price-card-desc">Everything in Basic, plus custom add-ons.</div>
-        <span class="price-card-amount">£400</span>
+        <span class="price-card-amount">£300</span>
         <span class="price-card-duration">starting at</span>
         <ul class="price-card-features">
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Everything in Basic</li>
@@ -1777,9 +1777,9 @@
     </div>
 
     <div class="addon-totals">
-      <div class="addon-total-row"><span>Pro base</span><span>£400</span></div>
+      <div class="addon-total-row"><span>Pro base</span><span>£300</span></div>
       <div class="addon-total-row"><span>Add-ons</span><span id="addonExtras">£0</span></div>
-      <div class="addon-total-row is-grand"><span>Total</span><span id="addonGrandTotal">£400</span></div>
+      <div class="addon-total-row is-grand"><span>Total</span><span id="addonGrandTotal">£300</span></div>
     </div>
 
     <button type="button" class="modal-submit" id="addonConfirm">
@@ -2112,7 +2112,7 @@
     const addonExtrasEl = document.getElementById('addonExtras');
     const addonGrandEl = document.getElementById('addonGrandTotal');
 
-    const PRO_BASE = 400;
+    const PRO_BASE = 300;
     let selectedPlan = null;     // { plan, name, basePrice, addons: [{name, price}], total }
 
     function fmt(n) { return '£' + n.toLocaleString('en-GB'); }
@@ -2173,7 +2173,7 @@
         highlightCard(plan);
 
         if (plan === 'basic') {
-          selectedPlan = { plan, name, basePrice: 400, addons: [], total: 400 };
+          selectedPlan = { plan, name, basePrice: 300, addons: [], total: 300 };
           showSummary();
         } else if (plan === 'pro') {
           // Reset checkboxes to current selection (or empty)
