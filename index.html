@@ -647,7 +647,7 @@
   }
 
   /* PROCESS */
-  /* PROCESS — four cards connected by curved paths with animated dots */
+  /* PROCESS — a continuous flow of 4 compact cards joined by curved paths with animated dots */
   .process-flow {
     display: flex;
     align-items: stretch;
@@ -660,11 +660,11 @@
     min-width: 0;
     background: var(--surface);
     border: 1px solid var(--line);
-    border-radius: 18px;
-    padding: 28px 24px 32px;
-    min-height: 240px;
+    border-radius: 16px;
+    padding: 24px 20px;
     display: flex;
     flex-direction: column;
+    gap: 10px;
     transition: background 0.25s, border-color 0.25s, transform 0.25s;
   }
   .flow-step:hover {
@@ -672,41 +672,51 @@
     border-color: var(--line-strong);
     transform: translateY(-3px);
   }
+  .flow-step-head {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
   .flow-num {
     font-family: var(--font-serif);
     font-style: italic;
-    font-size: 32px;
+    font-size: 26px;
     letter-spacing: 0.005em;
     color: var(--white);
-    opacity: 0.5;
-    margin-bottom: 20px;
+    opacity: 0.55;
     line-height: 1;
   }
   .flow-step h3 {
     font-family: var(--font-display);
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 700;
     letter-spacing: -0.015em;
     color: var(--text);
-    margin-bottom: 12px;
+    margin: 0;
+    line-height: 1.2;
   }
   .flow-step p {
     color: var(--text-muted);
     font-size: 14px;
-    line-height: 1.55;
-    margin-top: auto;
+    line-height: 1.5;
+    margin: 0;
   }
+  /* Connector — fills the gap between cards; path visibly starts at the
+     previous card's edge and ends at the next card's edge */
   .flow-connector {
-    flex: 0 0 auto;
+    flex: 0 0 110px;
     align-self: center;
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 0 -4px; /* pull slightly into the cards so the line looks seated */
   }
-  .conn-v { display: none; }
   .flow-connector svg { display: block; overflow: visible; }
+  .conn-h { width: 118px; height: 60px; }
+  .conn-v { display: none; }
   @media (prefers-reduced-motion: reduce) {
-    .flow-connector circle { display: none; }
+    .flow-connector .flow-dot { display: none; }
   }
 
   /* PRICING — glass cards on navy; featured stays white for contrast */
@@ -1583,9 +1593,9 @@
     .work-grid { grid-template-columns: 1fr; }
     /* Process flow: stack vertically with vertical connectors */
     .process-flow { flex-direction: column; align-items: stretch; }
-    .flow-step { min-height: auto; }
+    .flow-connector { flex: 0 0 70px; margin: -4px 0; }
     .conn-h { display: none; }
-    .conn-v { display: block; }
+    .conn-v { display: block; width: 60px; height: 78px; }
     .form-row { grid-template-columns: 1fr; }
     .modal { padding: 28px 24px 24px; }
     .modal h2 { font-size: 26px; }
@@ -1597,6 +1607,50 @@
     .work-preview-mock { font-size: 40px; }
     .price-card { padding: 32px 24px; }
     .navy-sticky-bg .glow-blob { top: 70vh; opacity: 0.7; }
+    /* Services: force a horizontal row of 4 compact cards (icon + title only)
+       so the scatter effect works even on mobile — cards push partially off
+       the sides when scattered, snap into a tidy row when centred */
+    .services-grid {
+      display: grid !important;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      padding: 6px;
+      overflow: visible;
+    }
+    .service-card {
+      padding: 14px 8px;
+      border-radius: 12px;
+      min-height: 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 6px;
+    }
+    .service-icon {
+      width: 30px;
+      height: 30px;
+      margin-bottom: 2px;
+      border-radius: 8px;
+    }
+    .service-icon svg { width: 15px; height: 15px; }
+    .service-card h3 {
+      font-size: 11px;
+      line-height: 1.15;
+      margin: 0;
+      font-weight: 600;
+    }
+    .service-card p { display: none; }
+    .services-selection { inset: -5px; border-radius: 10px; }
+    .sel-corner { width: 5px; height: 5px; }
+    .sel-corner.tl { top: -3px; left: -3px; }
+    .sel-corner.tr { top: -3px; right: -3px; }
+    .sel-corner.bl { bottom: -3px; left: -3px; }
+    .sel-corner.br { bottom: -3px; right: -3px; }
+    /* Allow the scattered cards to extend out of the section horizontally.
+       The body already has overflow-x:hidden so no scrollbar appears. */
+    #services .container { overflow: visible; }
+
     /* New sections mobile */
     .proof-strip { padding: 56px 0 32px; }
     .proof-grid { grid-template-columns: 1fr; gap: 32px; }
@@ -1777,28 +1831,28 @@
         <span class="sel-corner br"></span>
       </div>
       <!-- Dispersion params on each card: data-dx / data-dy in px, data-dr in deg -->
-      <div class="service-card" data-dx="-380" data-dy="-150" data-dr="-16">
+      <div class="service-card" data-dx="-380" data-dy="-150" data-dr="-16" data-dx-m="-200" data-dy-m="-55" data-dr-m="-14">
         <div class="service-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
         </div>
         <h3>Design</h3>
         <p>Custom-crafted interfaces with attention to every detail. Modern, on-brand, and built to convert.</p>
       </div>
-      <div class="service-card" data-dx="-140" data-dy="170" data-dr="11">
+      <div class="service-card" data-dx="-140" data-dy="170" data-dr="11" data-dx-m="-80" data-dy-m="60" data-dr-m="8">
         <div class="service-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
         </div>
         <h3>Development</h3>
         <p>Blazing fast, accessible, SEO-ready. Built with modern stacks like Next.js, Webflow, and Framer.</p>
       </div>
-      <div class="service-card" data-dx="140" data-dy="-170" data-dr="-9">
+      <div class="service-card" data-dx="140" data-dy="-170" data-dr="-9" data-dx-m="80" data-dy-m="-60" data-dr-m="-7">
         <div class="service-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
         </div>
         <h3>Strategy</h3>
         <p>We don't just design — we plan. Conversion funnels, messaging, and positioning baked in from day one.</p>
       </div>
-      <div class="service-card" data-dx="380" data-dy="150" data-dr="17">
+      <div class="service-card" data-dx="380" data-dy="150" data-dr="17" data-dx-m="200" data-dy-m="55" data-dr-m="15">
         <div class="service-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
         </div>
@@ -2336,7 +2390,7 @@
     overlay.addEventListener('click', skip, { once: true });
   })();
 
-  /* ===== Services dispersion — cards scatter in/out as section enters/leaves viewport (desktop only) ===== */
+  /* ===== Services dispersion — cards scatter in/out as section enters/leaves viewport ===== */
   (function initServicesDispersal() {
     const grid = document.getElementById('servicesGrid');
     const section = document.getElementById('services');
@@ -2344,20 +2398,26 @@
 
     const cards = Array.from(grid.querySelectorAll('.service-card'));
     const selection = grid.querySelector('.services-selection');
-    const dispersal = cards.map(c => ({
-      dx: parseFloat(c.dataset.dx || 0),
-      dy: parseFloat(c.dataset.dy || 0),
-      dr: parseFloat(c.dataset.dr || 0),
-    }));
 
-    const mqDesktop = window.matchMedia('(min-width: 769px)');
+    const mqMobile  = window.matchMedia('(max-width: 768px)');
     const mqReduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-    let active = mqDesktop.matches && !mqReduced.matches;
+    let active = !mqReduced.matches;
+
+    function getD(card) {
+      // Pick mobile-specific values when the viewport is mobile, otherwise desktop
+      const m = mqMobile.matches;
+      const d = card.dataset;
+      return {
+        dx: parseFloat((m ? d.dxM : d.dx) || 0),
+        dy: parseFloat((m ? d.dyM : d.dy) || 0),
+        dr: parseFloat((m ? d.drM : d.dr) || 0),
+      };
+    }
 
     function applyProgress(p) {
       // p in [0, 1], 0 = snapped, 1 = fully dispersed
-      cards.forEach((card, i) => {
-        const d = dispersal[i];
+      cards.forEach(card => {
+        const d = getD(card);
         card.style.transform =
           'translate3d(' + (d.dx * p).toFixed(2) + 'px, ' + (d.dy * p).toFixed(2) + 'px, 0) ' +
           'rotate(' + (d.dr * p).toFixed(2) + 'deg)';
@@ -2383,10 +2443,10 @@
       // Trigger range: start interpolating when section center is within ~65% vh of viewport center
       const range = vh * 0.65;
       let p = Math.min(dist / range, 1);
-      // Deadzone around snapped state (20% around center keeps p = 0)
+      // Deadzone around snapped state (22% around centre keeps p = 0)
       if (p < 0.22) p = 0;
       else p = (p - 0.22) / 0.78;
-      // Ease-in for the scatter (so cards hold formation longer, scatter faster)
+      // Ease-in for the scatter (hold formation longer, scatter more aggressively)
       p = p * p;
       applyProgress(p);
     }
@@ -2396,14 +2456,14 @@
     }
 
     function syncMode() {
-      active = mqDesktop.matches && !mqReduced.matches;
+      active = !mqReduced.matches;
       if (!active) reset();
       else update();
     }
 
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll, { passive: true });
-    if (mqDesktop.addEventListener) mqDesktop.addEventListener('change', syncMode);
+    if (mqMobile.addEventListener)  mqMobile.addEventListener('change', onScroll);
     if (mqReduced.addEventListener) mqReduced.addEventListener('change', syncMode);
     // First paint
     syncMode();
