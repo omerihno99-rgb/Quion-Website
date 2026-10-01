@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Quoin Studios — Websites that mean business</title>
+<title>Quoin Studios — Websites built to perform</title>
+<meta name="description" content="Quoin Studios designs fast, focused websites that turn attention into enquiries — for construction, property, professional services and ambitious local businesses.">
+<meta name="theme-color" content="#1f2b4d">
 <!-- Favicon — Quoin brick icon (transparent, white) -->
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
@@ -1329,6 +1331,182 @@
   }
   body.modal-open { overflow: hidden; }
 
+  /* ===== NEW: PROOF STRIP ===== */
+  .proof-strip {
+    background: var(--navy);
+    padding: 72px 0 48px;
+    border-top: 1px solid var(--line);
+  }
+  .proof-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+  }
+  .proof-item h3 {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+  .proof-item p {
+    color: var(--text-muted);
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
+  /* ===== NEW: WEBSITE CONVERSION SPRINT SECTION ===== */
+  .sprint-section { padding: 140px 0; }
+  .sprint-wrap { display: block; }
+  .sprint-lead { max-width: 820px; margin-bottom: 72px; }
+  .sprint-steps {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 56px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .sprint-step {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .sprint-num {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 36px;
+    letter-spacing: 0.005em;
+    color: var(--white);
+    opacity: 0.5;
+    line-height: 1;
+  }
+  .sprint-step h3 {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+  .sprint-step p { color: var(--text-muted); font-size: 15px; line-height: 1.55; }
+  .sprint-cta-wrap { display: flex; justify-content: flex-start; }
+
+  /* ===== NEW: WORK OUTCOME LINE ===== */
+  .work-outcome {
+    margin-top: 6px;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 15px !important;
+    color: var(--text-muted) !important;
+    letter-spacing: 0.005em;
+    line-height: 1.4;
+  }
+
+  /* ===== NEW: FINAL CTA SECTION ===== */
+  .final-cta-section {
+    background: var(--navy);
+    padding: 120px 0 140px;
+    border-top: 1px solid var(--line);
+  }
+  .final-cta-wrap {
+    text-align: center;
+    max-width: 820px;
+    margin: 0 auto;
+  }
+  .final-cta-wrap .section-title { margin-left: auto; margin-right: auto; }
+  .final-cta-wrap .section-subtitle { margin-left: auto; margin-right: auto; margin-bottom: 36px; }
+  .final-cta-wrap .nav-cta { margin: 0 auto; }
+
+  /* ===== NEW: LANGUAGE SWITCHER ===== */
+  .lang-switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-left: 12px;
+    padding: 6px 10px;
+    border-radius: 100px;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: transparent;
+    font-family: var(--font-ui);
+  }
+  .lang-btn {
+    background: transparent;
+    border: 0;
+    color: var(--text-muted);
+    font-family: var(--font-ui);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 4px 6px;
+    cursor: pointer;
+    border-radius: 100px;
+    transition: color 0.2s;
+    line-height: 1;
+  }
+  .lang-btn:hover { color: var(--white); }
+  .lang-btn.is-active { color: var(--white); }
+  .lang-btn:focus-visible { outline: 2px solid var(--white); outline-offset: 2px; }
+  .lang-sep { color: rgba(255,255,255,0.3); font-size: 12px; }
+
+  .nav-drawer-lang {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin: 24px 0 16px;
+    padding: 8px 14px;
+    border-radius: 100px;
+    border: 1px solid rgba(255,255,255,0.18);
+    align-self: flex-start;
+  }
+  .nav-drawer-lang .lang-btn { font-size: 13px; padding: 6px 8px; }
+
+  /* ===== NEW: CINEMATIC INTRO ===== */
+  .intro-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: auto;
+    animation: introFade 1900ms cubic-bezier(0.65, 0, 0.35, 1) forwards;
+  }
+  .intro-logo {
+    width: 140px;
+    height: 140px;
+    display: block;
+    will-change: transform, opacity;
+    animation: introZoom 1900ms cubic-bezier(0.65, 0, 0.35, 1) forwards;
+    transform-origin: 50% 50%;
+  }
+  @keyframes introZoom {
+    0%   { transform: scale(0.55); opacity: 0; }
+    18%  { transform: scale(1);    opacity: 1; }
+    58%  { transform: scale(1.1);  opacity: 1; }
+    100% { transform: scale(28);   opacity: 0; }
+  }
+  @keyframes introFade {
+    0%, 70% { opacity: 1; }
+    100%    { opacity: 0; visibility: hidden; }
+  }
+  .intro-overlay.is-done { display: none; }
+  body.intro-active { overflow: hidden; }
+  @media (prefers-reduced-motion: reduce) {
+    .intro-overlay { animation: introFadeReduced 320ms linear forwards; }
+    .intro-logo { animation: none; opacity: 1; transform: scale(1); }
+  }
+  @keyframes introFadeReduced {
+    0%   { opacity: 1; }
+    100% { opacity: 0; visibility: hidden; }
+  }
+
   /* RESPONSIVE */
   @media (max-width: 768px) {
     /* Hide desktop nav controls, show burger */
@@ -1357,6 +1535,16 @@
     .work-preview-mock { font-size: 40px; }
     .price-card { padding: 32px 24px; }
     .navy-sticky-bg .glow-blob { top: 70vh; opacity: 0.7; }
+    /* New sections mobile */
+    .proof-strip { padding: 56px 0 32px; }
+    .proof-grid { grid-template-columns: 1fr; gap: 32px; }
+    .sprint-section { padding: 80px 0; }
+    .sprint-steps { grid-template-columns: 1fr; gap: 16px; }
+    .sprint-lead { margin-bottom: 48px; }
+    .final-cta-section { padding: 80px 0 90px; }
+    /* Hide the desktop language switcher in nav; it moves into the drawer */
+    nav .lang-switch { display: none; }
+    .intro-logo { width: 100px; height: 100px; }
   }
   @media (min-width: 769px) {
     .nav-drawer {
@@ -1365,10 +1553,16 @@
       pointer-events: none !important;
     }
     body.nav-open { overflow: auto; }
+    .nav-drawer-lang { display: none; }
   }
 </style>
 </head>
-<body>
+<body class="intro-active">
+
+<!-- Cinematic intro — plays once per session; respects reduced motion -->
+<div class="intro-overlay" id="introOverlay" aria-hidden="true">
+  <img class="intro-logo" id="introLogo" src="logo-q.png" alt="">
+</div>
 
 <nav>
   <div class="nav-inner">
@@ -1376,21 +1570,27 @@
       <img src="logo-light.png" alt="Quoin Studios">
     </a>
     <ul class="slide-tabs" id="slideTabs">
-      <li class="tab" data-href="#services">Services</li>
-      <li class="tab" data-href="#work">Work</li>
-      <li class="tab" data-href="#process">Process</li>
+      <li class="tab" data-href="#services" data-i18n="nav.servicesShort">Services</li>
+      <li class="tab" data-href="#work" data-i18n="nav.work">Work</li>
+      <li class="tab" data-href="#process" data-i18n="nav.process">Process</li>
       <li class="cursor" aria-hidden="true"></li>
     </ul>
     <a href="#" class="nav-cta start-project-btn" role="button" aria-haspopup="dialog">
       <span class="ihb-idle">
         <span class="ihb-dot"></span>
-        <span class="ihb-text">Start a project</span>
+        <span class="ihb-text" data-i18n="cta.navPrimary">Get a website check</span>
       </span>
       <span class="ihb-hover">
-        <span>Start a project</span>
+        <span data-i18n="cta.navPrimary">Get a website check</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
       </span>
     </a>
+    <!-- Language switcher -->
+    <div class="lang-switch" role="group" aria-label="Language">
+      <button type="button" class="lang-btn is-active" data-lang="en" aria-pressed="true">EN</button>
+      <span class="lang-sep" aria-hidden="true">/</span>
+      <button type="button" class="lang-btn" data-lang="de" aria-pressed="false">DE</button>
+    </div>
     <!-- Mobile hamburger (visible below 768px) -->
     <button type="button" class="nav-burger" data-nav-toggle
             aria-label="Open menu" aria-expanded="false" aria-controls="navDrawer">
@@ -1404,10 +1604,15 @@
 <!-- Mobile drawer -->
 <div class="nav-drawer" id="navDrawer" data-nav-drawer aria-hidden="true">
   <div class="nav-drawer-inner">
-    <a href="#work" class="nav-drawer-link" data-nav-link>Work</a>
-    <a href="#services" class="nav-drawer-link" data-nav-link>What we do</a>
-    <a href="#process" class="nav-drawer-link" data-nav-link>Process</a>
-    <button type="button" class="nav-drawer-cta start-project-btn" data-nav-link>Start a project</button>
+    <a href="#work" class="nav-drawer-link" data-nav-link data-i18n="nav.work">Work</a>
+    <a href="#services" class="nav-drawer-link" data-nav-link data-i18n="nav.services">What we do</a>
+    <a href="#process" class="nav-drawer-link" data-nav-link data-i18n="nav.process">Process</a>
+    <div class="nav-drawer-lang" role="group" aria-label="Language">
+      <button type="button" class="lang-btn is-active" data-lang="en" aria-pressed="true">EN</button>
+      <span class="lang-sep" aria-hidden="true">/</span>
+      <button type="button" class="lang-btn" data-lang="de" aria-pressed="false">DE</button>
+    </div>
+    <button type="button" class="nav-drawer-cta start-project-btn" data-nav-link data-i18n="cta.navPrimary">Get a website check</button>
   </div>
 </div>
 
@@ -1419,16 +1624,16 @@
 
   <header class="hero">
     <div class="container">
-      <h1>Websites built<br />to <span class="italic">perform.</span></h1>
-      <p>Quoin Studios is a small studio crafting fast, beautiful websites for ambitious brands. No templates. No fluff. Just sites that&nbsp;convert.</p>
+      <h1><span data-i18n="hero.h1a">Websites built</span><br /><span data-i18n="hero.h1b">to</span> <span class="italic" data-i18n="hero.h1c">perform.</span></h1>
+      <p data-i18n="hero.sub">Quoin Studios designs fast, focused websites that turn attention into enquiries — for construction, property, professional services and ambitious local businesses.</p>
       <div class="hero-ctas">
         <a href="#" class="nav-cta hero-cta start-project-btn" role="button" aria-haspopup="dialog">
           <span class="ihb-idle">
             <span class="ihb-dot"></span>
-            <span class="ihb-text">Start a project</span>
+            <span class="ihb-text" data-i18n="cta.heroPrimary">Get a website check</span>
           </span>
           <span class="ihb-hover">
-            <span>Start a project</span>
+            <span data-i18n="cta.heroPrimary">Get a website check</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
           </span>
         </a>
@@ -1438,11 +1643,79 @@
 
 </div>
 
+<!-- Proof strip -->
+<section class="proof-strip" aria-label="Why Quoin Studios">
+  <div class="container">
+    <div class="proof-grid">
+      <div class="proof-item">
+        <h3 data-i18n="proof.1h">One clear commercial goal</h3>
+        <p data-i18n="proof.1p">More enquiries, calls, bookings or qualified conversations.</p>
+      </div>
+      <div class="proof-item">
+        <h3 data-i18n="proof.2h">Direct studio collaboration</h3>
+        <p data-i18n="proof.2p">You work directly with the person designing and building your site.</p>
+      </div>
+      <div class="proof-item">
+        <h3 data-i18n="proof.3h">Fast, accessible and SEO-ready</h3>
+        <p data-i18n="proof.3p">A strong technical foundation without template clutter.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Website Conversion Sprint -->
+<section id="sprint" class="dark-section sprint-section">
+  <div class="container">
+    <div class="sprint-wrap">
+      <div class="sprint-lead">
+        <div class="section-label" data-i18n="sprint.label">A focused starting point</div>
+        <h2 class="section-title"><span data-i18n="sprint.h1">The Website Conversion</span> <span class="italic" data-i18n="sprint.h2">Sprint.</span></h2>
+        <p class="section-subtitle" data-i18n="sprint.intro">A focused review and redesign of the pages that matter most: your homepage and the path visitors take to enquire, call or book.</p>
+      </div>
+      <ol class="sprint-steps">
+        <li class="sprint-step">
+          <span class="sprint-num">01</span>
+          <div>
+            <h3 data-i18n="sprint.s1h">Find the friction</h3>
+            <p data-i18n="sprint.s1p">We review the message, trust signals, mobile experience and calls to action that may be costing you enquiries.</p>
+          </div>
+        </li>
+        <li class="sprint-step">
+          <span class="sprint-num">02</span>
+          <div>
+            <h3 data-i18n="sprint.s2h">Clarify the next action</h3>
+            <p data-i18n="sprint.s2p">We shape a simpler route from first impression to contact, booking or quote request.</p>
+          </div>
+        </li>
+        <li class="sprint-step">
+          <span class="sprint-num">03</span>
+          <div>
+            <h3 data-i18n="sprint.s3h">Design and build</h3>
+            <p data-i18n="sprint.s3p">You receive a polished, responsive experience built around one measurable business outcome.</p>
+          </div>
+        </li>
+      </ol>
+      <div class="sprint-cta-wrap">
+        <a href="#" class="nav-cta start-project-btn" role="button" aria-haspopup="dialog">
+          <span class="ihb-idle">
+            <span class="ihb-dot"></span>
+            <span class="ihb-text" data-i18n="cta.sprint">Request a free website check</span>
+          </span>
+          <span class="ihb-hover">
+            <span data-i18n="cta.sprint">Request a free website check</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="services" class="dark-section">
   <div class="container">
-    <div class="section-label">What we do</div>
-    <h2 class="section-title">Everything your brand needs to <span class="italic">launch online.</span></h2>
-    <p class="section-subtitle">From the first sketch to the final pixel, we handle it all in-house.</p>
+    <div class="section-label" data-i18n="services.label">What we do</div>
+    <h2 class="section-title"><span data-i18n="services.h1">Everything your business needs to win</span> <span class="italic" data-i18n="services.h2">trust online.</span></h2>
+    <p class="section-subtitle" data-i18n="services.intro">Strategy, design and development shaped around the action you want customers to take.</p>
 
     <div class="services-grid">
       <div class="service-card">
@@ -1479,9 +1752,9 @@
 
 <section id="work" class="light-section">
   <div class="container">
-    <div class="section-label">Selected work</div>
-    <h2 class="section-title">Sites we're <span class="italic">proud of.</span></h2>
-    <p class="section-subtitle">A handful of recent builds. Each one custom-made for the brand behind it.</p>
+    <div class="section-label" data-i18n="work.label">Selected work</div>
+    <h2 class="section-title"><span data-i18n="work.h1">Sites we're</span> <span class="italic" data-i18n="work.h2">proud of.</span></h2>
+    <p class="section-subtitle" data-i18n="work.intro">Recent builds across investment, media and sport — each shaped around the organisation behind it.</p>
 
     <div class="work-grid">
       <a class="work-card" href="https://shaires-holdings.com" target="_blank" rel="noopener">
@@ -1492,7 +1765,8 @@
         <div class="work-info">
           <div>
             <h3>Shaires Holdings</h3>
-            <p>Investment &amp; holdings firm</p>
+            <p data-i18n="work.shairesDesc">Investment &amp; holdings firm</p>
+            <p class="work-outcome" data-i18n="work.shairesOutcome">Clearer group positioning and a focused route for serious enquiries.</p>
           </div>
           <svg class="work-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
         </div>
@@ -1506,7 +1780,8 @@
         <div class="work-info">
           <div>
             <h3>PlusOne Show</h3>
-            <p>Podcast</p>
+            <p data-i18n="work.plusoneDesc">Podcast</p>
+            <p class="work-outcome" data-i18n="work.plusoneOutcome">A stronger home for episodes, guests and audience discovery.</p>
           </div>
           <svg class="work-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
         </div>
@@ -1520,7 +1795,8 @@
         <div class="work-info">
           <div>
             <h3>MBS Sport</h3>
-            <p>Football Agency</p>
+            <p data-i18n="work.mbsDesc">Football Agency</p>
+            <p class="work-outcome" data-i18n="work.mbsOutcome">A trust-led presentation for players, families and partners.</p>
           </div>
           <svg class="work-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
         </div>
@@ -1534,7 +1810,8 @@
         <div class="work-info">
           <div>
             <h3>Union Football</h3>
-            <p>Youth Football Club</p>
+            <p data-i18n="work.unionDesc">Youth Football Club</p>
+            <p class="work-outcome" data-i18n="work.unionOutcome">Essential club information made easier to find and act on.</p>
           </div>
           <svg class="work-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
         </div>
@@ -1546,35 +1823,54 @@
 
 <section id="process" class="dark-section">
   <div class="container">
-    <div class="section-label">How we work</div>
-    <h2 class="section-title">A process built on <span class="italic">clarity.</span></h2>
-    <p class="section-subtitle">Four phases. Four to eight weeks. Zero surprises.</p>
+    <div class="section-label" data-i18n="process.label">How we work</div>
+    <h2 class="section-title"><span data-i18n="process.h1">A process built on</span> <span class="italic" data-i18n="process.h2">clarity.</span></h2>
+    <p class="section-subtitle" data-i18n="process.intro">A clear four-step process, scaled to the scope of your project.</p>
 
     <div class="process-list">
       <div class="process-item">
         <div class="process-num">01</div>
-        <h3>Discovery</h3>
-        <p>We start with a deep dive into your brand, audience, and goals. By the end of week one, we know exactly what we're building and why.</p>
+        <h3 data-i18n="process.s1h">Discovery</h3>
+        <p data-i18n="process.s1p">We start with a deep dive into your brand, audience, and goals. By the end of week one, we know exactly what we're building and why.</p>
       </div>
       <div class="process-item">
         <div class="process-num">02</div>
-        <h3>Design</h3>
-        <p>Wireframes, then high-fidelity mockups. You'll see real progress every few days and have plenty of room to shape direction.</p>
+        <h3 data-i18n="process.s2h">Design</h3>
+        <p data-i18n="process.s2p">Wireframes, then high-fidelity mockups. You'll see real progress every few days and have plenty of room to shape direction.</p>
       </div>
       <div class="process-item">
         <div class="process-num">03</div>
-        <h3>Build</h3>
-        <p>Pixel-perfect development with performance and accessibility built in. Staged previews so you can watch it come together.</p>
+        <h3 data-i18n="process.s3h">Build</h3>
+        <p data-i18n="process.s3p">Pixel-perfect development with performance and accessibility built in. Staged previews so you can watch it come together.</p>
       </div>
       <div class="process-item">
         <div class="process-num">04</div>
-        <h3>Launch &amp; grow</h3>
-        <p>We handle deployment, hand off the keys, and stick around for analytics, A/B tests, and iteration as you scale.</p>
+        <h3 data-i18n="process.s4h">Launch &amp; grow</h3>
+        <p data-i18n="process.s4p">We handle deployment, hand off the keys, and stick around for analytics, A/B tests, and iteration as you scale.</p>
       </div>
     </div>
   </div>
 </section>
 
+<!-- Final CTA -->
+<section id="final-cta" class="final-cta-section">
+  <div class="container">
+    <div class="final-cta-wrap">
+      <h2 class="section-title"><span data-i18n="finalCta.h1">A useful first conversation, not a</span> <span class="italic" data-i18n="finalCta.h2">sales pitch.</span></h2>
+      <p class="section-subtitle" data-i18n="finalCta.p">Send your website and the outcome you want. Quoin Studios will reply with one concrete improvement and, if there is a fit, suggest a focused 15-minute call.</p>
+      <a href="#" class="nav-cta start-project-btn" role="button" aria-haspopup="dialog">
+        <span class="ihb-idle">
+          <span class="ihb-dot"></span>
+          <span class="ihb-text" data-i18n="cta.final">Request a website check</span>
+        </span>
+        <span class="ihb-hover">
+          <span data-i18n="cta.final">Request a website check</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
 
 <footer>
   <div class="container">
@@ -1583,19 +1879,19 @@
         <a href="#" class="logo logo-lg" aria-label="Quoin Studios">
           <img src="logo-light.png" alt="Quoin Studios">
         </a>
-        <p class="footer-tagline">A small studio building thoughtful, high-performing websites for ambitious brands.</p>
+        <p class="footer-tagline" data-i18n="footer.tagline">Focused websites designed to turn attention into enquiries, calls and bookings.</p>
       </div>
       <div class="footer-cols">
         <div class="footer-col">
-          <h4>Studio</h4>
+          <h4 data-i18n="footer.studio">Studio</h4>
           <ul>
-            <li><a href="#work">Work</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#process">Process</a></li>
+            <li><a href="#work" data-i18n="nav.work">Work</a></li>
+            <li><a href="#services" data-i18n="nav.services">Services</a></li>
+            <li><a href="#process" data-i18n="nav.process">Process</a></li>
           </ul>
         </div>
         <div class="footer-col">
-          <h4>Contact</h4>
+          <h4 data-i18n="footer.contact">Contact</h4>
           <ul>
             <li><a href="mailto:quoinstudios@gmail.com">quoinstudios@gmail.com</a></li>
           </ul>
@@ -1603,8 +1899,8 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 Quoin Studios. All rights reserved.</span>
-      <span>Built by Quoin Studios.</span>
+      <span data-i18n="footer.copyright">© 2026 Quoin Studios. All rights reserved.</span>
+      <span data-i18n="footer.builtBy">Built by Quoin Studios.</span>
     </div>
   </div>
 </footer>
@@ -1615,78 +1911,69 @@
     <button class="modal-close" type="button" aria-label="Close form" id="modalCloseBtn">×</button>
 
     <div class="modal-content" id="modalContent">
-      <span class="modal-eyebrow">Start a project</span>
-      <h2 id="modalTitle">Let's build something <span class="italic">extraordinary.</span></h2>
-      <p class="modal-desc">Tell us about your project. We'll get back within 24 hours.</p>
+      <span class="modal-eyebrow" data-i18n="modal.eyebrow">Free website check</span>
+      <h2 id="modalTitle" data-i18n="modal.title">Let's find the highest-impact improvement.</h2>
+      <p class="modal-desc" data-i18n="modal.desc">Share your website and goal. We'll reply with one concrete improvement within 24 hours.</p>
 
       <form class="modal-form" id="projectForm" action="https://formsubmit.co/ajax/quoinstudios@gmail.com" method="POST">
         <!-- FormSubmit config (hidden) -->
-        <input type="hidden" name="_subject" value="New Quoin Studios project inquiry">
+        <input type="hidden" name="_subject" value="New Quoin Studios website check request">
         <input type="hidden" name="_template" value="table">
         <input type="hidden" name="_captcha" value="false">
         <div class="form-row">
           <div class="form-field">
-            <label for="pf-name">Your name</label>
+            <label for="pf-name" data-i18n="form.name">Your name</label>
             <input type="text" id="pf-name" name="name" placeholder="Jane Doe" required>
           </div>
           <div class="form-field">
-            <label for="pf-email">Email</label>
+            <label for="pf-email" data-i18n="form.email">Email</label>
             <input type="email" id="pf-email" name="email" placeholder="jane@company.com" required>
           </div>
         </div>
 
         <div class="form-field">
-          <label for="pf-company">Company</label>
-          <input type="text" id="pf-company" name="company" placeholder="Acme Inc.">
+          <label for="pf-company" data-i18n="form.company">Company</label>
+          <input type="text" id="pf-company" name="company" placeholder="Acme Inc." data-i18n-placeholder="form.companyPh">
         </div>
 
         <div class="form-row">
           <div class="form-field">
-            <label for="pf-type">Project type</label>
+            <label for="pf-type" data-i18n="form.type">Project type</label>
             <select id="pf-type" name="type" required>
-              <option value="" disabled selected>Select one…</option>
-              <option>Landing page</option>
-              <option>Marketing site</option>
-              <option>E-commerce</option>
-              <option>SaaS / web app</option>
-              <option>Rebrand / redesign</option>
-              <option>Something else</option>
+              <option value="" disabled selected data-i18n="form.selectOne">Select one…</option>
+              <option data-i18n="form.typeSprint">Website Conversion Sprint</option>
+              <option data-i18n="form.typeLanding">Landing page</option>
+              <option data-i18n="form.typeMarketing">Marketing website</option>
+              <option data-i18n="form.typeRedesign">Redesign</option>
+              <option data-i18n="form.typeApp">App</option>
+              <option data-i18n="form.typeOther">Something else</option>
             </select>
           </div>
           <div class="form-field">
-            <label for="pf-budget">Budget</label>
-            <select id="pf-budget" name="budget" required>
-              <option value="" disabled selected>Select range…</option>
-              <option>£300 – £500</option>
-              <option>£500 – £1,000</option>
-              <option>£1,000+</option>
-              <option>Not sure yet</option>
+            <label for="pf-goal" data-i18n="form.goal">Main goal</label>
+            <select id="pf-goal" name="goal" required>
+              <option value="" disabled selected data-i18n="form.selectGoal">Select a goal…</option>
+              <option data-i18n="form.goalEnquiries">More enquiries</option>
+              <option data-i18n="form.goalCalls">More calls</option>
+              <option data-i18n="form.goalBookings">More bookings</option>
+              <option data-i18n="form.goalCredibility">Stronger credibility</option>
+              <option data-i18n="form.goalLaunch">Launch a new business</option>
             </select>
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-field">
-            <label for="pf-has-domain">Do you have a domain?</label>
-            <select id="pf-has-domain" name="has_domain" required>
-              <option value="" disabled selected>Select one…</option>
-              <option value="yes">Yes — I already own one</option>
-              <option value="no">No — I need help getting one</option>
-            </select>
-          </div>
-          <div class="form-field">
-            <label for="pf-domain">Domain</label>
-            <input type="text" id="pf-domain" name="domain" placeholder="your-brand.com (existing or desired)" required>
           </div>
         </div>
 
         <div class="form-field">
-          <label for="pf-message">Tell us about your project</label>
-          <textarea id="pf-message" name="message" placeholder="Goals, timeline, anything we should know…" rows="4" required></textarea>
+          <label for="pf-domain" data-i18n="form.domain">Domain / website URL</label>
+          <input type="text" id="pf-domain" name="domain" placeholder="your-brand.com" required>
+        </div>
+
+        <div class="form-field">
+          <label for="pf-message" data-i18n="form.message">What should the website help you achieve?</label>
+          <textarea id="pf-message" name="message" placeholder="Tell us what is not working today and what a better result would look like…" data-i18n-placeholder="form.messagePh" rows="4" required></textarea>
         </div>
 
         <button type="submit" class="modal-submit">
-          Send inquiry
+          <span data-i18n="form.submit">Request website check</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
         </button>
       </form>
@@ -1696,13 +1983,259 @@
       <div class="modal-success-icon">
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
       </div>
-      <h3>Thanks — we got it.</h3>
-      <p>We'll be in touch within 24 hours.</p>
+      <h3 data-i18n="form.successH">Thanks — your request is in.</h3>
+      <p data-i18n="form.successP">We'll reply with one concrete improvement within 24 hours.</p>
     </div>
   </div>
 </div>
 
 <script>
+  /* ===== i18n: EN / DE translations ===== */
+  const TRANSLATIONS = {
+    'nav.work':           { en: 'Work',           de: 'Projekte' },
+    'nav.services':       { en: 'What we do',     de: 'Leistungen' },
+    'nav.servicesShort':  { en: 'Services',       de: 'Leistungen' },
+    'nav.process':        { en: 'Process',        de: 'Ablauf' },
+    'cta.navPrimary':     { en: 'Get a website check',           de: 'Website-Check anfragen' },
+    'cta.heroPrimary':    { en: 'Get a website check',           de: 'Website-Check anfragen' },
+    'cta.sprint':         { en: 'Request a free website check',  de: 'Kostenlosen Website-Check anfragen' },
+    'cta.final':          { en: 'Request a website check',       de: 'Website-Check anfragen' },
+
+    'hero.h1a':           { en: 'Websites built',   de: 'Websites, die' },
+    'hero.h1b':           { en: 'to',               de: '' },
+    'hero.h1c':           { en: 'perform.',         de: 'performen.' },
+    'hero.sub':           { en: 'Quoin Studios designs fast, focused websites that turn attention into enquiries — for construction, property, professional services and ambitious local businesses.',
+                            de: 'Quoin Studios gestaltet schnelle, fokussierte Websites, die Aufmerksamkeit in Anfragen verwandeln – für Bau, Immobilien, Dienstleister und ambitionierte lokale Unternehmen.' },
+
+    'proof.1h':           { en: 'One clear commercial goal',               de: 'Ein klares Geschäftsziel' },
+    'proof.1p':           { en: 'More enquiries, calls, bookings or qualified conversations.',
+                            de: 'Mehr Anfragen, Anrufe, Buchungen oder qualifizierte Gespräche.' },
+    'proof.2h':           { en: 'Direct studio collaboration',             de: 'Direkte Zusammenarbeit mit dem Studio' },
+    'proof.2p':           { en: 'You work directly with the person designing and building your site.',
+                            de: 'Sie arbeiten direkt mit der Person, die Ihre Website entwirft und umsetzt.' },
+    'proof.3h':           { en: 'Fast, accessible and SEO-ready',          de: 'Schnell, barrierefrei und SEO-ready' },
+    'proof.3p':           { en: 'A strong technical foundation without template clutter.',
+                            de: 'Ein starkes technisches Fundament ohne Template-Ballast.' },
+
+    'sprint.label':       { en: 'A focused starting point',                de: 'Ein fokussierter Startpunkt' },
+    'sprint.h1':          { en: 'The Website Conversion',                  de: 'Der Website Conversion' },
+    'sprint.h2':          { en: 'Sprint.',                                 de: 'Sprint.' },
+    'sprint.intro':       { en: 'A focused review and redesign of the pages that matter most: your homepage and the path visitors take to enquire, call or book.',
+                            de: 'Ein gezielter Review und Redesign der wichtigsten Seiten: Ihrer Startseite und des Wegs, den Besucher gehen, um anzufragen, anzurufen oder zu buchen.' },
+    'sprint.s1h':         { en: 'Find the friction',    de: 'Reibungspunkte finden' },
+    'sprint.s1p':         { en: 'We review the message, trust signals, mobile experience and calls to action that may be costing you enquiries.',
+                            de: 'Wir prüfen Botschaft, Vertrauenssignale, mobiles Erlebnis und Call-to-Actions, die Sie möglicherweise Anfragen kosten.' },
+    'sprint.s2h':         { en: 'Clarify the next action', de: 'Nächsten Schritt klären' },
+    'sprint.s2p':         { en: 'We shape a simpler route from first impression to contact, booking or quote request.',
+                            de: 'Wir gestalten einen einfacheren Weg vom ersten Eindruck bis zu Kontakt, Buchung oder Angebotsanfrage.' },
+    'sprint.s3h':         { en: 'Design and build',       de: 'Design und Umsetzung' },
+    'sprint.s3p':         { en: 'You receive a polished, responsive experience built around one measurable business outcome.',
+                            de: 'Sie erhalten ein poliertes, responsives Erlebnis, das auf ein messbares Geschäftsergebnis ausgerichtet ist.' },
+
+    'services.label':     { en: 'What we do',       de: 'Was wir tun' },
+    'services.h1':        { en: 'Everything your business needs to win',
+                            de: 'Alles, was Ihr Unternehmen braucht, um' },
+    'services.h2':        { en: 'trust online.',    de: 'Vertrauen online zu gewinnen.' },
+    'services.intro':     { en: 'Strategy, design and development shaped around the action you want customers to take.',
+                            de: 'Strategie, Design und Entwicklung – ausgerichtet auf die Handlung, die Ihre Kundschaft ausführen soll.' },
+
+    'work.label':         { en: 'Selected work',    de: 'Ausgewählte Arbeiten' },
+    'work.h1':            { en: "Sites we're",       de: 'Sites, auf die wir' },
+    'work.h2':            { en: 'proud of.',        de: 'stolz sind.' },
+    'work.intro':         { en: 'Recent builds across investment, media and sport — each shaped around the organisation behind it.',
+                            de: 'Aktuelle Projekte in Investment, Medien und Sport – jedes zugeschnitten auf die Organisation dahinter.' },
+    'work.shairesDesc':   { en: 'Investment & holdings firm',  de: 'Investment- & Holdinggesellschaft' },
+    'work.shairesOutcome':{ en: 'Clearer group positioning and a focused route for serious enquiries.',
+                            de: 'Klarere Gruppenpositionierung und ein fokussierter Weg für ernsthafte Anfragen.' },
+    'work.plusoneDesc':   { en: 'Podcast',           de: 'Podcast' },
+    'work.plusoneOutcome':{ en: 'A stronger home for episodes, guests and audience discovery.',
+                            de: 'Ein stärkeres Zuhause für Episoden, Gäste und Hörerentdeckung.' },
+    'work.mbsDesc':       { en: 'Football Agency',   de: 'Fußball-Agentur' },
+    'work.mbsOutcome':    { en: 'A trust-led presentation for players, families and partners.',
+                            de: 'Eine vertrauensorientierte Präsentation für Spieler, Familien und Partner.' },
+    'work.unionDesc':     { en: 'Youth Football Club',  de: 'Jugend-Fußballverein' },
+    'work.unionOutcome':  { en: 'Essential club information made easier to find and act on.',
+                            de: 'Wichtige Vereinsinformationen – leichter zu finden und zu nutzen.' },
+
+    'process.label':      { en: 'How we work',   de: 'Wie wir arbeiten' },
+    'process.h1':         { en: 'A process built on',  de: 'Ein Prozess, der auf' },
+    'process.h2':         { en: 'clarity.',      de: 'Klarheit basiert.' },
+    'process.intro':      { en: 'A clear four-step process, scaled to the scope of your project.',
+                            de: 'Ein klarer Vier-Schritte-Prozess, abgestimmt auf den Umfang Ihres Projekts.' },
+    'process.s1h':        { en: 'Discovery',  de: 'Discovery' },
+    'process.s1p':        { en: "We start with a deep dive into your brand, audience, and goals. By the end of week one, we know exactly what we're building and why.",
+                            de: 'Wir starten mit einem tiefen Blick in Ihre Marke, Zielgruppe und Ziele. Nach der ersten Woche wissen wir genau, was wir bauen und warum.' },
+    'process.s2h':        { en: 'Design',     de: 'Design' },
+    'process.s2p':        { en: "Wireframes, then high-fidelity mockups. You'll see real progress every few days and have plenty of room to shape direction.",
+                            de: 'Wireframes, dann hochauflösende Mockups. Sie sehen alle paar Tage echte Fortschritte und haben viel Raum, die Richtung mitzugestalten.' },
+    'process.s3h':        { en: 'Build',      de: 'Umsetzung' },
+    'process.s3p':        { en: 'Pixel-perfect development with performance and accessibility built in. Staged previews so you can watch it come together.',
+                            de: 'Pixelgenaue Entwicklung mit Performance und Barrierefreiheit von Beginn an. Staging-Previews, damit Sie alles mitverfolgen können.' },
+    'process.s4h':        { en: 'Launch & grow',  de: 'Launch & Wachstum' },
+    'process.s4p':        { en: 'We handle deployment, hand off the keys, and stick around for analytics, A/B tests, and iteration as you scale.',
+                            de: 'Wir übernehmen das Deployment, übergeben die Schlüssel und bleiben für Analytics, A/B-Tests und Iterationen an Ihrer Seite.' },
+
+    'finalCta.h1':        { en: 'A useful first conversation, not a',  de: 'Ein nützliches erstes Gespräch, kein' },
+    'finalCta.h2':        { en: 'sales pitch.',  de: 'Verkaufsgespräch.' },
+    'finalCta.p':         { en: 'Send your website and the outcome you want. Quoin Studios will reply with one concrete improvement and, if there is a fit, suggest a focused 15-minute call.',
+                            de: 'Senden Sie uns Ihre Website und Ihr gewünschtes Ergebnis. Quoin Studios antwortet mit einer konkreten Verbesserung – und bei passender Grundlage mit einem fokussierten 15-Minuten-Gespräch.' },
+
+    'modal.eyebrow':      { en: 'Free website check',    de: 'Kostenloser Website-Check' },
+    'modal.title':        { en: "Let's find the highest-impact improvement.",
+                            de: 'Finden wir die Verbesserung mit dem größten Effekt.' },
+    'modal.desc':         { en: "Share your website and goal. We'll reply with one concrete improvement within 24 hours.",
+                            de: 'Teilen Sie uns Ihre Website und Ihr Ziel mit. Wir antworten innerhalb von 24 Stunden mit einer konkreten Verbesserung.' },
+
+    'form.name':          { en: 'Your name',         de: 'Ihr Name' },
+    'form.email':         { en: 'Email',             de: 'E-Mail' },
+    'form.company':       { en: 'Company',           de: 'Unternehmen' },
+    'form.companyPh':     { en: 'Acme Inc.',         de: 'Muster GmbH' },
+    'form.type':          { en: 'Project type',      de: 'Projekttyp' },
+    'form.selectOne':     { en: 'Select one…',       de: 'Bitte wählen…' },
+    'form.typeSprint':    { en: 'Website Conversion Sprint', de: 'Website Conversion Sprint' },
+    'form.typeLanding':   { en: 'Landing page',      de: 'Landingpage' },
+    'form.typeMarketing': { en: 'Marketing website', de: 'Marketing-Website' },
+    'form.typeRedesign':  { en: 'Redesign',          de: 'Redesign' },
+    'form.typeApp':       { en: 'App',               de: 'App' },
+    'form.typeOther':     { en: 'Something else',    de: 'Etwas anderes' },
+    'form.goal':          { en: 'Main goal',         de: 'Hauptziel' },
+    'form.selectGoal':    { en: 'Select a goal…',    de: 'Ziel wählen…' },
+    'form.goalEnquiries': { en: 'More enquiries',    de: 'Mehr Anfragen' },
+    'form.goalCalls':     { en: 'More calls',        de: 'Mehr Anrufe' },
+    'form.goalBookings':  { en: 'More bookings',     de: 'Mehr Buchungen' },
+    'form.goalCredibility':{ en: 'Stronger credibility', de: 'Mehr Glaubwürdigkeit' },
+    'form.goalLaunch':    { en: 'Launch a new business', de: 'Neues Unternehmen starten' },
+    'form.domain':        { en: 'Domain / website URL',  de: 'Domain / Website-URL' },
+    'form.message':       { en: 'What should the website help you achieve?',
+                            de: 'Was soll die Website für Sie erreichen?' },
+    'form.messagePh':     { en: 'Tell us what is not working today and what a better result would look like…',
+                            de: 'Beschreiben Sie, was heute nicht funktioniert und wie ein besseres Ergebnis aussehen würde…' },
+    'form.submit':        { en: 'Request website check',  de: 'Website-Check anfragen' },
+    'form.sending':       { en: 'Sending…',               de: 'Senden…' },
+    'form.successH':      { en: 'Thanks — your request is in.',
+                            de: 'Danke – Ihre Anfrage ist eingegangen.' },
+    'form.successP':      { en: "We'll reply with one concrete improvement within 24 hours.",
+                            de: 'Wir antworten innerhalb von 24 Stunden mit einer konkreten Verbesserung.' },
+
+    'footer.tagline':     { en: 'Focused websites designed to turn attention into enquiries, calls and bookings.',
+                            de: 'Fokussierte Websites, die Aufmerksamkeit in Anfragen, Anrufe und Buchungen verwandeln.' },
+    'footer.studio':      { en: 'Studio',   de: 'Studio' },
+    'footer.contact':     { en: 'Contact',  de: 'Kontakt' },
+    'footer.copyright':   { en: '© 2026 Quoin Studios. All rights reserved.',
+                            de: '© 2026 Quoin Studios. Alle Rechte vorbehalten.' },
+    'footer.builtBy':     { en: 'Built by Quoin Studios.', de: 'Umgesetzt von Quoin Studios.' },
+  };
+
+  function applyLang(lang) {
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const t = TRANSLATIONS[key];
+      if (t && t[lang] !== undefined) el.textContent = t[lang];
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      const key = el.getAttribute('data-i18n-placeholder');
+      const t = TRANSLATIONS[key];
+      if (t && t[lang] !== undefined) el.setAttribute('placeholder', t[lang]);
+    });
+    document.querySelectorAll('.lang-btn').forEach(b => {
+      const active = b.getAttribute('data-lang') === lang;
+      b.classList.toggle('is-active', active);
+      b.setAttribute('aria-pressed', String(active));
+    });
+  }
+
+  function detectInitialLang() {
+    // 1. Saved preference wins
+    try {
+      const saved = localStorage.getItem('quoinLang');
+      if (saved === 'en' || saved === 'de') return { lang: saved, source: 'saved' };
+    } catch (e) {}
+    // 2. Browser language fallback (used first synchronously; IP overrides async if available)
+    const nav = (navigator.language || 'en').toLowerCase();
+    if (nav.startsWith('de')) return { lang: 'de', source: 'browser' };
+    return { lang: 'en', source: 'browser' };
+  }
+
+  async function detectByIP() {
+    try {
+      const ctrl = new AbortController();
+      const to = setTimeout(() => ctrl.abort(), 1800);
+      const res = await fetch('https://ipapi.co/json/', { signal: ctrl.signal, cache: 'no-store' });
+      clearTimeout(to);
+      if (!res.ok) throw new Error('ip bad');
+      const data = await res.json();
+      if (['DE','AT','CH'].includes(String(data.country_code || '').toUpperCase())) return 'de';
+      return 'en';
+    } catch (e) { return null; }
+  }
+
+  // Apply initial lang synchronously BEFORE first paint so content shows in right language
+  // under the intro overlay (user never sees wrong-language flash).
+  (function initLang() {
+    const initial = detectInitialLang();
+    applyLang(initial.lang);
+    // If no saved preference, upgrade with IP detection in background and apply before intro ends
+    if (initial.source !== 'saved') {
+      detectByIP().then(ip => {
+        if (!ip) return;
+        try {
+          const stillUnsaved = !localStorage.getItem('quoinLang');
+          if (stillUnsaved && ip !== document.documentElement.lang) {
+            applyLang(ip);
+          }
+        } catch (e) {}
+      });
+    }
+    // Wire up switcher buttons
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const lang = btn.getAttribute('data-lang');
+        try { localStorage.setItem('quoinLang', lang); } catch (e) {}
+        applyLang(lang);
+      });
+    });
+  })();
+
+  /* ===== Cinematic intro — plays once per session ===== */
+  (function initIntro() {
+    const overlay = document.getElementById('introOverlay');
+    const body = document.body;
+    if (!overlay) return;
+
+    let shouldPlay = true;
+    try {
+      if (sessionStorage.getItem('quoinIntroSeen') === '1') shouldPlay = false;
+    } catch (e) {}
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function finish() {
+      overlay.classList.add('is-done');
+      body.classList.remove('intro-active');
+      overlay.setAttribute('aria-hidden', 'true');
+      try { sessionStorage.setItem('quoinIntroSeen', '1'); } catch (e) {}
+    }
+
+    if (!shouldPlay) { finish(); return; }
+
+    // Safety timeout — never leave overlay stuck
+    const safety = setTimeout(finish, reduced ? 500 : 2400);
+
+    // On natural animation end, finish
+    overlay.addEventListener('animationend', (e) => {
+      if (e.target === overlay) { clearTimeout(safety); finish(); }
+    });
+
+    // If logo fails to load, still finish
+    const logo = document.getElementById('introLogo');
+    if (logo) logo.addEventListener('error', () => { clearTimeout(safety); finish(); });
+
+    // Allow user to skip via Escape or click
+    function skip() { clearTimeout(safety); finish(); }
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') skip(); }, { once: true });
+    overlay.addEventListener('click', skip, { once: true });
+  })();
+
   // SlideTabs — cursor follows hover, snaps to active section on mouseleave/scroll
   (function () {
     const container = document.getElementById('slideTabs');
@@ -1888,7 +2421,12 @@
       e.preventDefault();
       const submitBtn = form.querySelector('.modal-submit');
       const originalLabel = submitBtn ? submitBtn.innerHTML : '';
-      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending…'; }
+      if (submitBtn) {
+        const lang = document.documentElement.lang === 'de' ? 'de' : 'en';
+        const sending = (typeof TRANSLATIONS !== 'undefined' && TRANSLATIONS['form.sending']) ? TRANSLATIONS['form.sending'][lang] : 'Sending…';
+        submitBtn.disabled = true;
+        submitBtn.textContent = sending;
+      }
 
       try {
         const formData = new FormData(form);
@@ -1909,7 +2447,7 @@
           .filter(([k]) => !k.startsWith('_'))
           .map(([k, v]) => `${k}: ${v}`)
           .join('\n');
-        window.location.href = `mailto:quoinstudios@gmail.com?subject=${encodeURIComponent('New Quoin Studios project inquiry')}&body=${encodeURIComponent(body)}`;
+        window.location.href = `mailto:quoinstudios@gmail.com?subject=${encodeURIComponent('New Quoin Studios website check request')}&body=${encodeURIComponent(body)}`;
       } finally {
         if (submitBtn) { submitBtn.disabled = false; submitBtn.innerHTML = originalLabel; }
       }
