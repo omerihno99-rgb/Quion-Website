@@ -2297,18 +2297,25 @@
       if (!active) { reset(); return; }
       const rect = section.getBoundingClientRect();
       const vh = window.innerHeight;
-      // Distance from section's vertical center to viewport center
-      const sectionCenter = rect.top + rect.height / 2;
-      const viewportCenter = vh / 2;
-      const dist = Math.abs(sectionCenter - viewportCenter);
-      // Trigger range: start interpolating when section center is within ~65% vh of viewport center
-      const range = vh * 0.65;
-      let p = Math.min(dist / range, 1);
-      // Deadzone around snapped state (22% around centre keeps p = 0)
-      if (p < 0.22) p = 0;
-      else p = (p - 0.22) / 0.78;
-      // Ease-in for the scatter (hold formation longer, scatter more aggressively)
-      p = p * p;
+      const sh = rect.height;
+      // scrollFrac: 0 when the section first touches the viewport bottom
+      //             1 when the section has fully left out the viewport top
+      const scrollFrac = Math.min(Math.max(
+        (vh - rect.top) / (vh + sh), 0), 1);
+      // Snapped window — wider on mobile where the stacked section is tall
+      // so the last card has time to be read before the scatter triggers.
+      const mobile = mqMobile.matches;
+      const SNAP_IN  = mobile ? 0.14 : 0.22;
+      const SNAP_OUT = mobile ? 0.92 : 0.78;
+      let p;
+      if (scrollFrac < SNAP_IN) {
+        p = (SNAP_IN - scrollFrac) / SNAP_IN;        // 1 → 0 as section enters
+      } else if (scrollFrac > SNAP_OUT) {
+        p = (scrollFrac - SNAP_OUT) / (1 - SNAP_OUT); // 0 → 1 as section exits
+      } else {
+        p = 0;                                        // snapped (reading)
+      }
+      p = p * p;  // ease: hold formation, scatter more aggressively near edges
       applyProgress(p);
     }
 
