@@ -2297,20 +2297,18 @@
       if (!active) { reset(); return; }
       const rect = section.getBoundingClientRect();
       const vh = window.innerHeight;
-      const sh = rect.height;
-      // Compute how much of the section is visible in the viewport, as a
-      // fraction of the lesser of (section height, viewport height). A value
-      // of 1 means the section either fills the viewport (tall section) or is
-      // fully in view (short section). Scatter fades out as visibility rises.
-      const visibleTop = Math.max(rect.top, 0);
-      const visibleBottom = Math.min(rect.bottom, vh);
-      const visHeight = Math.max(0, visibleBottom - visibleTop);
-      const visFrac = visHeight / Math.max(1, Math.min(sh, vh));
-      // Snap when the section is at least 65% visible (short or tall);
-      // scatter proportionally as visibility drops below that.
-      const SNAP_FROM = 0.65;
-      let p = visFrac >= SNAP_FROM ? 0 : (SNAP_FROM - visFrac) / SNAP_FROM;
-      p = p * p;  // ease — hold formation, scatter faster as visibility drops
+      // Distance from section's vertical center to viewport center
+      const sectionCenter = rect.top + rect.height / 2;
+      const viewportCenter = vh / 2;
+      const dist = Math.abs(sectionCenter - viewportCenter);
+      // Trigger range: start interpolating when section center is within ~65% vh of viewport center
+      const range = vh * 0.65;
+      let p = Math.min(dist / range, 1);
+      // Deadzone around snapped state (22% around centre keeps p = 0)
+      if (p < 0.22) p = 0;
+      else p = (p - 0.22) / 0.78;
+      // Ease-in for the scatter (hold formation longer, scatter more aggressively)
+      p = p * p;
       applyProgress(p);
     }
 
