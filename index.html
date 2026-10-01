@@ -485,20 +485,58 @@
 
   /* SERVICES — glass cards on navy */
   .services-grid {
+    position: relative;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1px;
-    background: var(--line);
-    border: 1px solid var(--line);
-    border-radius: 20px;
-    overflow: hidden;
+    gap: 16px;
+    overflow: visible;
+    padding: 8px; /* small inner margin so corner marks don't touch cards */
+    perspective: 1000px;
   }
   .service-card {
     background: var(--surface);
-    padding: 44px 32px;
-    transition: background 0.3s;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 40px 28px;
+    transition: background 0.3s, border-color 0.3s;
+    will-change: transform;
+    transform: translate3d(0,0,0) rotate(0deg);
+    transform-origin: 50% 50%;
+    position: relative;
+    z-index: 2;
   }
-  .service-card:hover { background: var(--surface-hover); }
+  .service-card:hover { background: var(--surface-hover); border-color: var(--line-strong); }
+  /* Figma-style selection box around the whole row — fades in when snapped */
+  .services-selection {
+    position: absolute;
+    inset: -6px;
+    pointer-events: none;
+    border: 1px dashed rgba(255,255,255,0.14);
+    border-radius: 14px;
+    opacity: 0;
+    transition: opacity 320ms ease;
+    z-index: 1;
+  }
+  .sel-corner {
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    background: rgba(255,255,255,0.6);
+    border: 1px solid rgba(10,15,30,0.65);
+    border-radius: 1px;
+  }
+  .sel-corner.tl { top: -4px;    left: -4px; }
+  .sel-corner.tr { top: -4px;    right: -4px; }
+  .sel-corner.bl { bottom: -4px; left: -4px; }
+  .sel-corner.br { bottom: -4px; right: -4px; }
+  /* Give the services section a bit of horizontal/vertical breathing room
+     so dispersed cards don't collide with the page edges */
+  #services .container { overflow: visible; }
+  /* Respect reduced motion — just show the row, no scatter */
+  @media (prefers-reduced-motion: reduce) {
+    .service-card { transform: none !important; }
+    .services-selection { opacity: 0 !important; }
+  }
   .service-icon {
     width: 46px;
     height: 46px;
@@ -1701,29 +1739,37 @@
     <h2 class="section-title"><span data-i18n="services.h1">Everything your business needs to win</span> <span class="italic" data-i18n="services.h2">trust online.</span></h2>
     <p class="section-subtitle" data-i18n="services.intro">Strategy, design and development shaped around the action you want customers to take.</p>
 
-    <div class="services-grid">
-      <div class="service-card">
+    <div class="services-grid" id="servicesGrid">
+      <!-- Figma-style selection rectangle (fades in when cards are snapped) -->
+      <div class="services-selection" aria-hidden="true">
+        <span class="sel-corner tl"></span>
+        <span class="sel-corner tr"></span>
+        <span class="sel-corner bl"></span>
+        <span class="sel-corner br"></span>
+      </div>
+      <!-- Dispersion params on each card: data-dx / data-dy in px, data-dr in deg -->
+      <div class="service-card" data-dx="-220" data-dy="-80" data-dr="-9">
         <div class="service-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
         </div>
         <h3>Design</h3>
         <p>Custom-crafted interfaces with attention to every detail. Modern, on-brand, and built to convert.</p>
       </div>
-      <div class="service-card">
+      <div class="service-card" data-dx="-90" data-dy="90" data-dr="6">
         <div class="service-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
         </div>
         <h3>Development</h3>
         <p>Blazing fast, accessible, SEO-ready. Built with modern stacks like Next.js, Webflow, and Framer.</p>
       </div>
-      <div class="service-card">
+      <div class="service-card" data-dx="90" data-dy="-90" data-dr="-5">
         <div class="service-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
         </div>
         <h3>Strategy</h3>
         <p>We don't just design — we plan. Conversion funnels, messaging, and positioning baked in from day one.</p>
       </div>
-      <div class="service-card">
+      <div class="service-card" data-dx="220" data-dy="80" data-dr="10">
         <div class="service-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
         </div>
@@ -2191,6 +2237,79 @@
     function skip() { clearTimeout(safety); finish(); }
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') skip(); }, { once: true });
     overlay.addEventListener('click', skip, { once: true });
+  })();
+
+  /* ===== Services dispersion — cards scatter in/out as section enters/leaves viewport (desktop only) ===== */
+  (function initServicesDispersal() {
+    const grid = document.getElementById('servicesGrid');
+    const section = document.getElementById('services');
+    if (!grid || !section) return;
+
+    const cards = Array.from(grid.querySelectorAll('.service-card'));
+    const selection = grid.querySelector('.services-selection');
+    const dispersal = cards.map(c => ({
+      dx: parseFloat(c.dataset.dx || 0),
+      dy: parseFloat(c.dataset.dy || 0),
+      dr: parseFloat(c.dataset.dr || 0),
+    }));
+
+    const mqDesktop = window.matchMedia('(min-width: 769px)');
+    const mqReduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let active = mqDesktop.matches && !mqReduced.matches;
+
+    function applyProgress(p) {
+      // p in [0, 1], 0 = snapped, 1 = fully dispersed
+      cards.forEach((card, i) => {
+        const d = dispersal[i];
+        card.style.transform =
+          'translate3d(' + (d.dx * p).toFixed(2) + 'px, ' + (d.dy * p).toFixed(2) + 'px, 0) ' +
+          'rotate(' + (d.dr * p).toFixed(2) + 'deg)';
+      });
+      if (selection) selection.style.opacity = String(Math.max(0, 1 - p * 1.4));
+    }
+
+    function reset() {
+      cards.forEach(c => { c.style.transform = ''; });
+      if (selection) selection.style.opacity = '';
+    }
+
+    let scheduled = false;
+    function update() {
+      scheduled = false;
+      if (!active) { reset(); return; }
+      const rect = section.getBoundingClientRect();
+      const vh = window.innerHeight;
+      // Distance from section's vertical center to viewport center
+      const sectionCenter = rect.top + rect.height / 2;
+      const viewportCenter = vh / 2;
+      const dist = Math.abs(sectionCenter - viewportCenter);
+      // Trigger range: start interpolating when section center is within ~65% vh of viewport center
+      const range = vh * 0.65;
+      let p = Math.min(dist / range, 1);
+      // Deadzone around snapped state (20% around center keeps p = 0)
+      if (p < 0.22) p = 0;
+      else p = (p - 0.22) / 0.78;
+      // Ease-in for the scatter (so cards hold formation longer, scatter faster)
+      p = p * p;
+      applyProgress(p);
+    }
+
+    function onScroll() {
+      if (!scheduled) { scheduled = true; requestAnimationFrame(update); }
+    }
+
+    function syncMode() {
+      active = mqDesktop.matches && !mqReduced.matches;
+      if (!active) reset();
+      else update();
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    if (mqDesktop.addEventListener) mqDesktop.addEventListener('change', syncMode);
+    if (mqReduced.addEventListener) mqReduced.addEventListener('change', syncMode);
+    // First paint
+    syncMode();
   })();
 
   // SlideTabs — cursor follows hover, snaps to active section on mouseleave/scroll
