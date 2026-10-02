@@ -52,9 +52,10 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
 
+  html { background: var(--navy); } /* fallback so there's never a white flash */
   body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    background: var(--navy);
+    background: transparent; /* fixed .site-bg (behind body) shows through */
     color: var(--text-on-dark);
     -webkit-font-smoothing: antialiased;
     line-height: 1.5;
@@ -344,56 +345,39 @@
     border-color: var(--white);
   }
 
-  /* SECTIONS — all navy, separated by subtle dividers */
+  /* SECTIONS — transparent so the fixed site background shows through */
   section {
     padding: 140px 0;
     position: relative;
-    background: var(--navy);
+    background: transparent;
     scroll-margin-top: 80px; /* keep section header clear of the fixed nav on anchor scrolls */
   }
 
-  /* NAVY STAGE — shared sticky background for hero + manifesto */
-  .navy-stage {
-    position: relative;
-    background: var(--navy);
-    /* no overflow:hidden — that would break sticky positioning */
-  }
-  /* Sticky anchor (zero-height) — pins for the entire stage length */
-  .navy-sticky-bg {
-    position: sticky;
-    top: 0;
-    height: 0;
-    width: 100%;
-    z-index: 0;
+  /* FIXED SITE BACKGROUND — stays put while content scrolls over it */
+  .site-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
     pointer-events: none;
-    overflow: visible;
+    background: var(--navy);
   }
-  .navy-stage > .hero,
-  .navy-stage > .navy-section {
-    position: relative;
-    z-index: 1;
-  }
-
-  /* Hero is transparent over the sticky bg (no own background) */
-  .navy-stage .hero { background: transparent; }
-  .navy-stage .hero::before { display: none; }
-
-  /* HERO AURORA — user-provided image; fade edges into the site navy so there's no seam */
-  .hero-aurora {
+  .site-bg img {
     position: absolute;
-    left: 0;
-    top: 0;
-    width: 100vw;
-    height: 100vh;
+    inset: 0;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     object-position: center;
-    z-index: 0;
-    pointer-events: none;
     display: block;
-    /* Smooth dissolve to navy on all edges, strongest at the bottom */
-    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 55%, rgba(0,0,0,0.4) 90%, rgba(0,0,0,0) 100%);
-            mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 55%, rgba(0,0,0,0.4) 90%, rgba(0,0,0,0) 100%);
   }
+
+  /* Legacy wrappers — now transparent so the fixed bg shows through */
+  .navy-stage { position: relative; background: transparent; }
+  .navy-sticky-bg { display: none; } /* no longer used; fixed bg replaces it */
+  .navy-stage > .hero,
+  .navy-stage > .navy-section { position: relative; z-index: 1; }
+  .navy-stage .hero { background: transparent; }
+  .navy-stage .hero::before { display: none; }
 
   /* NAVY SECTION (manifesto content) */
   .navy-section {
@@ -439,15 +423,10 @@
     transform: translateY(-0.15em);
   }
 
-  /* All sections live on navy now; class names kept for backward compat */
+  /* All sections live over the fixed aurora now; backgrounds are transparent */
   .dark-section, .light-section {
-    background: var(--navy);
+    background: transparent;
     color: var(--text);
-  }
-  /* Subtle divider line between consecutive sections */
-  section + section,
-  .navy-stage + section {
-    border-top: 1px solid var(--line);
   }
 
   .section-label {
@@ -1028,7 +1007,7 @@
 
   /* FOOTER */
   footer {
-    background: var(--navy-deep);
+    background: transparent;
     color: var(--text);
     padding: 80px 0 40px;
     border-top: 1px solid var(--line);
@@ -1603,6 +1582,11 @@
 </head>
 <body class="intro-active">
 
+<!-- Fixed site background — stays put while content scrolls over it -->
+<div class="site-bg" aria-hidden="true">
+  <img src="hero-aurora.png" alt="">
+</div>
+
 <!-- Cinematic intro — plays once per session; respects reduced motion -->
 <div class="intro-overlay" id="introOverlay" aria-hidden="true">
   <img class="intro-logo" id="introLogo" src="logo-q.png" alt="">
@@ -1663,10 +1647,6 @@
 </div>
 
 <div class="navy-stage">
-  <!-- Sticky background — stays put as content scrolls past -->
-  <div class="navy-sticky-bg" aria-hidden="true">
-    <img class="hero-aurora" src="hero-aurora.png" alt="">
-  </div>
 
   <header class="hero">
     <div class="container">
